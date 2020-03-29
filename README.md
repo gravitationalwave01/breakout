@@ -11,5 +11,5 @@ To the run the game locally, you must have Python 3 installed. If you have Pytho
 3. build a python virtual environment: `python -m venv venv`
 4. activate the venv (either `source venv/bin/activate` on NIX or `source /venv/Scripts/activate` on Windows)
 5. Install requisite packages `pip install -r requirements.txt`
-6. Run the flask webservice `python breakout/app.py`
+6. Run the flask webservice `export FLASK_APP=./breakout/app.py; flask run`
 7. In a browser, visit `localhost:5000/`, you should see the breakout game running

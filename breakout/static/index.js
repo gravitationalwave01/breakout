@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 var score = 0
 var ball = {
     center: {
-        "x": canvas.width/2, 
+        "x": canvas.width/2 + Math.random() * 10 - 5, 
         "y": canvas.height-30
     },
     "r": 10,
@@ -16,7 +16,7 @@ var ball = {
         } else {
             this.v.x *= -1
         }
-        this.color = '#'+Math.floor(Math.random()*16777215).toString(16)
+        this.color = '#'+Math.floor(Math.random()*6)+Math.floor(Math.random()*1048575).toString(16)
     }
 }
 
@@ -103,7 +103,12 @@ function keyUpHandler(e) {
     }
 }
 
-
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddle.x = relativeX - paddle.w/2;
+    }
+}
 
 function collisionDetection() {
     var x = ball.center.x
@@ -179,4 +184,5 @@ function draw() {
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
 var interval = setInterval(draw, 10);
